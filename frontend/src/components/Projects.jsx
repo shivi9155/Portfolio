@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import { MdOutlineCode } from 'react-icons/md';
-import axios from 'axios';
 import SectionBackdrop from './SectionBackdrop';
 
 const containerVariants = {
@@ -123,14 +122,11 @@ const ProjectCard = ({ project }) => {
 };
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const fallbackProjects = [
+  const projects = [
     {
     _id: '1',
     title: 'E-CourtFlow',
-    image: '/public/E-courtflow.jpeg',
+    image: '/E-courtflow.jpeg',
 
     challenge: `Managing court cases manually led to delays, lack of transparency, and inefficient tracking of case progress across multiple stages.
                 Difficulty in handling large volumes of case data and ensuring proper role-based access for judges, lawyers, and admins.
@@ -153,7 +149,7 @@ Provided a centralized platform for managing cases, improving accuracy and reduc
    {
   _id: '2',
   title: 'Real Estate Hub',
-  image: '/public/image.jpeg',
+  image: '/image.jpeg',
 
   challenge: `Difficulty in managing and displaying large volumes of property listings efficiently.
 Lack of a centralized platform for users to search, filter, and compare properties easily.
@@ -178,7 +174,7 @@ Delivered a seamless and user-friendly experience, increasing usability for buye
 {
   _id: '3',
   title: 'Daycare Management System',
-  image: 'public/Doodledesk.jpeg',
+  image: '/Doodledesk.jpeg',
 
   challenge: `Managing daycare operations manually led to inefficiencies in tracking children, staff, and daily activities.
 Difficulty in maintaining attendance records, schedules, and communication between staff and parents.
@@ -201,25 +197,6 @@ Provided a simple, user-friendly interface for efficient daycare management.`,
   tags: ['HTML', 'Tailwind CSS', 'JavaScript', 'jQuery', 'PHP'],
 }
   ];
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const { data } = await axios.get('http://localhost:5000/api/projects');
-        if (data && data.length > 0) {
-          setProjects(data);
-        } else {
-          setProjects(fallbackProjects);
-        }
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-        setProjects(fallbackProjects);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProjects();
-  }, []);
 
   return (
     <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 transition-colors">
@@ -267,25 +244,17 @@ Provided a simple, user-friendly interface for efficient daycare management.`,
           </p>
         </div>
 
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[1, 2].map((i) => (
-              <div key={i} className="bg-white/20 dark:bg-gray-800/20 backdrop-blur-md h-[500px] rounded-2xl animate-pulse" />
-            ))}
-          </div>
-        ) : (
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
-          >
-            {projects.map((project) => (
-              <ProjectCard key={project._id} project={project} />
-            ))}
-          </motion.div>
-        )}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
+        >
+          {projects.map((project) => (
+            <ProjectCard key={project._id} project={project} />
+          ))}
+        </motion.div>
 
         {/* Scroll indicator (mirrors Hero) */}
         <motion.div

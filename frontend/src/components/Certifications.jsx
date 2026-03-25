@@ -5,6 +5,8 @@ import { MdOutlineCardMembership } from 'react-icons/md';
 import axios from 'axios';
 import SectionBackdrop from './SectionBackdrop';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const containerVariants = {
   hidden: {},
   visible: {
@@ -92,7 +94,7 @@ const Certifications = () => {
       name: 'Full Stack Development with MERN',
       provider: 'thingQbtor',
       date: 'Dec 2025',
-      image: '/public/Fulltcak.jpeg',
+      image: '/Fulltcak.jpeg',
       link: 'https://drive.google.com/file/d/1UqVrLF9jZAIfGCpPla9ARIvKvf2S1NxY/view?usp=drive_link',
     },
     {
@@ -100,7 +102,7 @@ const Certifications = () => {
       name: 'Machine Learning and Image Processing',
       provider: 'thingQbator',
       date: 'Dec 2025',
-      image: '/public/MachineL.jpeg',
+      image: '/MachineL.jpeg',
       link: 'https://drive.google.com/file/d/18Ux9FgXb5XNEP5cJaJvjHXg6HE-sTJmg/view?usp=drive_link',
     },
     {
@@ -108,7 +110,7 @@ const Certifications = () => {
       name: 'Computational Theory',
       provider: 'Infosys',
       date: 'Aug 2025',
-      image: '/public/CT.jpeg',
+      image: '/CT.jpeg',
       link: 'https://drive.google.com/file/d/18fbckPiJ3nqPWQGsEbLGIoXYVbT18EOF/view?usp=drive_link',
     },
     {
@@ -116,7 +118,7 @@ const Certifications = () => {
       name: 'Data Structures and Algorithms Certification',
       provider: 'LPU',
       date: 'July 2025',
-      image: '/public/DSA.jpeg',
+      image: '/DSA.jpeg',
       link: 'https://drive.google.com/file/d/1apAsdsRYowR3aRltBxrlACdAHmyl_z1L/view?usp=drive_link',
     },
     {
@@ -124,7 +126,7 @@ const Certifications = () => {
       name: 'Master Generative AI & Generative AI tools (ChatGPT & more)',
       provider: 'NPTEL',
       date: 'Aug 2025',
-      image: '/public/MG.jpeg',
+      image: '/MG.jpeg',
       link: 'https://drive.google.com/file/d/1Ar9RdeKkrnejS3hU038pvEqiBx7cc8YB/view?usp=drive_link',
     },
 
@@ -133,7 +135,7 @@ const Certifications = () => {
       name: 'Cloud Computing Certification',
       provider: 'NPTEL',
       date: 'Apr 2025',
-      image: '/public/NPTEL.jpeg',
+      image: '/NPTEL.jpeg',
       link: 'https://drive.google.com/file/d/1exlykyZCXYVM0UgJFekRwn4d_CIbdQp-/view?usp=drive_link',
     },
   ];
@@ -141,7 +143,7 @@ const Certifications = () => {
   useEffect(() => {
     const fetchCertifications = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/certifications');
+        const { data } = await axios.get(`${API_URL}/api/certifications`);
         if (data && data.length > 0) {
           setCertifications(data);
         } else {

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaSignOutAlt, FaPlus, FaTrash } from 'react-icons/fa';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminDashboard = () => {
   const [projects, setProjects] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -22,8 +24,8 @@ const AdminDashboard = () => {
     const config = { headers: { Authorization: `Bearer ${token}` } };
     try {
       const [projRes, msgRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/projects'),
-        axios.get('http://localhost:5000/api/contact', config)
+        axios.get(`${API_URL}/api/projects`),
+        axios.get(`${API_URL}/api/contact`, config)
       ]);
       setProjects(projRes.data || []);
       setMessages(msgRes.data || []);
@@ -44,7 +46,7 @@ const AdminDashboard = () => {
     if(!window.confirm('Delete this project?')) return;
     const token = localStorage.getItem('adminToken');
     try {
-      await axios.delete(`http://localhost:5000/api/projects/${id}`, {
+      await axios.delete(`${API_URL}/api/projects/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setProjects(projects.filter(p => p._id !== id));
