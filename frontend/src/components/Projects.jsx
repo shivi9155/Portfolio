@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import { MdOutlineCode } from 'react-icons/md';
 import SectionBackdrop from './SectionBackdrop';
+import ecourtflowImage from '../assets/E-courtflow.jpeg';
+import realEstateImage from '../assets/image.jpeg';
+import doodledeskImage from '../assets/Doodledesk.jpeg';
 
 const containerVariants = {
   hidden: {},
@@ -126,7 +129,7 @@ const Projects = () => {
     {
     _id: '1',
     title: 'E-CourtFlow',
-    image: '/E-courtflow.jpeg',
+    image: ecourtflowImage,
 
     challenge: `Managing court cases manually led to delays, lack of transparency, and inefficient tracking of case progress across multiple stages.
                 Difficulty in handling large volumes of case data and ensuring proper role-based access for judges, lawyers, and admins.
@@ -149,7 +152,7 @@ Provided a centralized platform for managing cases, improving accuracy and reduc
    {
   _id: '2',
   title: 'Real Estate Hub',
-  image: '/image.jpeg',
+  image: realEstateImage,
 
   challenge: `Difficulty in managing and displaying large volumes of property listings efficiently.
 Lack of a centralized platform for users to search, filter, and compare properties easily.
@@ -174,7 +177,7 @@ Delivered a seamless and user-friendly experience, increasing usability for buye
 {
   _id: '3',
   title: 'Daycare Management System',
-  image: '/Doodledesk.jpeg',
+  image: doodledeskImage,
 
   challenge: `Managing daycare operations manually led to inefficiencies in tracking children, staff, and daily activities.
 Difficulty in maintaining attendance records, schedules, and communication between staff and parents.

@@ -4,6 +4,12 @@ import { FaExternalLinkAlt, FaCertificate, FaTimes } from 'react-icons/fa';
 import { MdOutlineCardMembership } from 'react-icons/md';
 import axios from 'axios';
 import SectionBackdrop from './SectionBackdrop';
+import fullStackImage from '../assets/Fulltcak.jpeg';
+import machineLearningImage from '../assets/MachineL.jpeg';
+import computationalTheoryImage from '../assets/CT.jpeg';
+import dsaImage from '../assets/DSA.jpeg';
+import generativeAiImage from '../assets/MG.jpeg';
+import cloudComputingImage from '../assets/NPTEL.jpeg';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -94,7 +100,7 @@ const Certifications = () => {
       name: 'Full Stack Development with MERN',
       provider: 'thingQbtor',
       date: 'Dec 2025',
-      image: '/Fulltcak.jpeg',
+      image: fullStackImage,
       link: 'https://drive.google.com/file/d/1UqVrLF9jZAIfGCpPla9ARIvKvf2S1NxY/view?usp=drive_link',
     },
     {
@@ -102,7 +108,7 @@ const Certifications = () => {
       name: 'Machine Learning and Image Processing',
       provider: 'thingQbator',
       date: 'Dec 2025',
-      image: '/MachineL.jpeg',
+      image: machineLearningImage,
       link: 'https://drive.google.com/file/d/18Ux9FgXb5XNEP5cJaJvjHXg6HE-sTJmg/view?usp=drive_link',
     },
     {
@@ -110,7 +116,7 @@ const Certifications = () => {
       name: 'Computational Theory',
       provider: 'Infosys',
       date: 'Aug 2025',
-      image: '/CT.jpeg',
+      image: computationalTheoryImage,
       link: 'https://drive.google.com/file/d/18fbckPiJ3nqPWQGsEbLGIoXYVbT18EOF/view?usp=drive_link',
     },
     {
@@ -118,7 +124,7 @@ const Certifications = () => {
       name: 'Data Structures and Algorithms Certification',
       provider: 'LPU',
       date: 'July 2025',
-      image: '/DSA.jpeg',
+      image: dsaImage,
       link: 'https://drive.google.com/file/d/1apAsdsRYowR3aRltBxrlACdAHmyl_z1L/view?usp=drive_link',
     },
     {
@@ -126,7 +132,7 @@ const Certifications = () => {
       name: 'Master Generative AI & Generative AI tools (ChatGPT & more)',
       provider: 'NPTEL',
       date: 'Aug 2025',
-      image: '/MG.jpeg',
+      image: generativeAiImage,
       link: 'https://drive.google.com/file/d/1Ar9RdeKkrnejS3hU038pvEqiBx7cc8YB/view?usp=drive_link',
     },
 
@@ -135,7 +141,7 @@ const Certifications = () => {
       name: 'Cloud Computing Certification',
       provider: 'NPTEL',
       date: 'Apr 2025',
-      image: '/NPTEL.jpeg',
+      image: cloudComputingImage,
       link: 'https://drive.google.com/file/d/1exlykyZCXYVM0UgJFekRwn4d_CIbdQp-/view?usp=drive_link',
     },
   ];

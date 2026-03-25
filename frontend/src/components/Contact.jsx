@@ -15,7 +15,7 @@ const contacts = [
   {
     icon: FaEnvelope,
     title: 'Email',
-    content: 'shivani@example.com',
+    content: 'sharma.shivani@gmail.com',
     // link: 'mailto:shivani@example.com',
     color: 'text-primary',
   },
