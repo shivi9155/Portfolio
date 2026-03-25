@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-light text-darker antialiased transition-colors duration-300;
+  }
+  
+  .dark body {
+    @apply bg-darker text-light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
