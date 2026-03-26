@@ -4,12 +4,12 @@ import { FaExternalLinkAlt, FaCertificate, FaTimes } from 'react-icons/fa';
 import { MdOutlineCardMembership } from 'react-icons/md';
 import axios from 'axios';
 import SectionBackdrop from './SectionBackdrop';
-import fullStackImage from '../assets/Fulltcak.jpeg';
-import machineLearningImage from '../assets/MachineL.jpeg';
-import computationalTheoryImage from '../assets/CT.jpeg';
-import dsaImage from '../assets/DSA.jpeg';
-import generativeAiImage from '../assets/MG.jpeg';
-import cloudComputingImage from '../assets/NPTEL.jpeg';
+import fullStackImage from '../assets/certificate-full-stack-mern.png';
+import machineLearningImage from '../assets/certificate-machine-learning.png';
+import computationalTheoryImage from '../assets/certificate-computational-theory.png';
+import dsaImage from '../assets/certificate-dsa-lpu.png';
+import generativeAiImage from '../assets/certificate-generative-ai.png';
+import cloudComputingImage from '../assets/certificate-cloud-computing.png';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -29,6 +29,87 @@ const cardVariants = {
     y: 0,
     transition: { duration: 0.5, ease: 'easeOut' },
   },
+};
+
+const normalizeValue = (value = '') => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
+const fallbackCertifications = [
+  {
+    _id: '1',
+    name: 'Full Stack Development with MERN',
+    provider: 'thingQbator',
+    date: 'Dec 2025',
+    image: fullStackImage,
+    link: 'https://drive.google.com/file/d/1UqVrLF9jZAIfGCpPla9ARIvKvf2S1NxY/view?usp=drive_link',
+  },
+  {
+    _id: '2',
+    name: 'Machine Learning and Image Processing',
+    provider: 'thingQbator',
+    date: 'Dec 2025',
+    image: machineLearningImage,
+    link: 'https://drive.google.com/file/d/18Ux9FgXb5XNEP5cJaJvjHXg6HE-sTJmg/view?usp=drive_link',
+  },
+  {
+    _id: '3',
+    name: 'Computational Theory: Language Principle & Finite Automata Theory',
+    provider: 'Infosys Springboard',
+    date: 'Aug 2025',
+    image: computationalTheoryImage,
+    link: 'https://drive.google.com/file/d/18fbckPiJ3nqPWQGsEbLGIoXYVbT18EOF/view?usp=drive_link',
+  },
+  {
+    _id: '4',
+    name: 'Basics of DSA',
+    provider: 'LPU Centre for Professional Enhancement',
+    date: 'Jul 2025',
+    image: dsaImage,
+    link: 'https://drive.google.com/file/d/1apAsdsRYowR3aRltBxrlACdAHmyl_z1L/view?usp=drive_link',
+  },
+  {
+    _id: '5',
+    name: 'Master Generative AI & Generative AI tools (ChatGPT & more)',
+    provider: 'Infosys Springboard',
+    date: 'Aug 2025',
+    image: generativeAiImage,
+    link: 'https://drive.google.com/file/d/1Ar9RdeKkrnejS3hU038pvEqiBx7cc8YB/view?usp=drive_link',
+  },
+  {
+    _id: '6',
+    name: 'Cloud Computing',
+    provider: 'NPTEL',
+    date: 'Apr 2025',
+    image: cloudComputingImage,
+    link: 'https://drive.google.com/file/d/1exlykyZCXYVM0UgJFekRwn4d_CIbdQp-/view?usp=drive_link',
+  },
+];
+
+const certificationAliases = [
+  ['Full Stack Development with MERN', ['full stack development with mern', 'mern']],
+  ['Machine Learning and Image Processing', ['machine learning and image processing', 'image processing']],
+  ['Computational Theory: Language Principle & Finite Automata Theory', ['computational theory', 'language principle finite automata theory', 'finite automata']],
+  ['Basics of DSA', ['basics of dsa', 'data structures and algorithms certification', 'data structures and algorithms']],
+  ['Master Generative AI & Generative AI tools (ChatGPT & more)', ['master generative ai', 'chatgpt more', 'generative ai']],
+  ['Cloud Computing', ['cloud computing', 'cloud computing certification']],
+];
+
+const findLocalCertification = (certification) => {
+  const normalizedName = normalizeValue(certification.name);
+  const normalizedProvider = normalizeValue(certification.provider);
+
+  return fallbackCertifications.find((item) => {
+    const aliases = certificationAliases.find(([name]) => name === item.name)?.[1] || [];
+    const matchesName =
+      normalizeValue(item.name) === normalizedName ||
+      aliases.some((alias) => normalizedName.includes(normalizeValue(alias)));
+    const matchesProvider =
+      !normalizedProvider ||
+      normalizeValue(item.provider) === normalizedProvider ||
+      normalizeValue(item.provider).includes(normalizedProvider) ||
+      normalizedProvider.includes(normalizeValue(item.provider));
+
+    return matchesName || (matchesProvider && aliases.some((alias) => normalizedName.includes(normalizeValue(alias))));
+  });
 };
 
 const CertificationCard = ({ cert, onOpen }) => {
@@ -94,64 +175,25 @@ const Certifications = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCert, setSelectedCert] = useState(null);
 
-  const fallbackCertifications = [
-    {
-      _id: '1',
-      name: 'Full Stack Development with MERN',
-      provider: 'thingQbtor',
-      date: 'Dec 2025',
-      image: fullStackImage,
-      link: 'https://drive.google.com/file/d/1UqVrLF9jZAIfGCpPla9ARIvKvf2S1NxY/view?usp=drive_link',
-    },
-    {
-      _id: '2',
-      name: 'Machine Learning and Image Processing',
-      provider: 'thingQbator',
-      date: 'Dec 2025',
-      image: machineLearningImage,
-      link: 'https://drive.google.com/file/d/18Ux9FgXb5XNEP5cJaJvjHXg6HE-sTJmg/view?usp=drive_link',
-    },
-    {
-      _id: '3',
-      name: 'Computational Theory',
-      provider: 'Infosys',
-      date: 'Aug 2025',
-      image: computationalTheoryImage,
-      link: 'https://drive.google.com/file/d/18fbckPiJ3nqPWQGsEbLGIoXYVbT18EOF/view?usp=drive_link',
-    },
-    {
-      _id: '4',
-      name: 'Data Structures and Algorithms Certification',
-      provider: 'LPU',
-      date: 'July 2025',
-      image: dsaImage,
-      link: 'https://drive.google.com/file/d/1apAsdsRYowR3aRltBxrlACdAHmyl_z1L/view?usp=drive_link',
-    },
-    {
-      _id: '5',
-      name: 'Master Generative AI & Generative AI tools (ChatGPT & more)',
-      provider: 'NPTEL',
-      date: 'Aug 2025',
-      image: generativeAiImage,
-      link: 'https://drive.google.com/file/d/1Ar9RdeKkrnejS3hU038pvEqiBx7cc8YB/view?usp=drive_link',
-    },
-
-    {
-      _id: '6',
-      name: 'Cloud Computing Certification',
-      provider: 'NPTEL',
-      date: 'Apr 2025',
-      image: cloudComputingImage,
-      link: 'https://drive.google.com/file/d/1exlykyZCXYVM0UgJFekRwn4d_CIbdQp-/view?usp=drive_link',
-    },
-  ];
-
   useEffect(() => {
     const fetchCertifications = async () => {
       try {
         const { data } = await axios.get(`${API_URL}/api/certifications`);
         if (data && data.length > 0) {
-          setCertifications(data);
+          setCertifications(
+            data.map((certification) => {
+              const localCertification = findLocalCertification(certification);
+              return localCertification
+                ? {
+                    ...certification,
+                    image: localCertification.image,
+                    link: certification.link || localCertification.link,
+                    provider: certification.provider || localCertification.provider,
+                    date: certification.date || localCertification.date,
+                  }
+                : certification;
+            })
+          );
         } else {
           setCertifications(fallbackCertifications);
         }

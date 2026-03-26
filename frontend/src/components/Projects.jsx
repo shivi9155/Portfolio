@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import { MdOutlineCode } from 'react-icons/md';
 import SectionBackdrop from './SectionBackdrop';
-import ecourtflowImage from '../assets/E-courtflow.jpeg';
-import realEstateImage from '../assets/image.jpeg';
-import doodledeskImage from '../assets/Doodledesk.jpeg';
+import ecourtflowImage from '../assets/project-ecourtflow.png';
+import realEstateImage from '../assets/project-real-estate-hub.png';
+import doodledeskImage from '../assets/project-doodledesk.jpeg';
 
 const containerVariants = {
   hidden: {},
@@ -151,7 +151,7 @@ Provided a centralized platform for managing cases, improving accuracy and reduc
   },
    {
   _id: '2',
-  title: 'Real Estate Hub',
+  title: 'RealEstateHub',
   image: realEstateImage,
 
   challenge: `Difficulty in managing and displaying large volumes of property listings efficiently.
@@ -176,7 +176,7 @@ Delivered a seamless and user-friendly experience, increasing usability for buye
 },
 {
   _id: '3',
-  title: 'Daycare Management System',
+  title: 'Doodle Desk',
   image: doodledeskImage,
 
   challenge: `Managing daycare operations manually led to inefficiencies in tracking children, staff, and daily activities.
