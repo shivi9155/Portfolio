@@ -193,7 +193,7 @@ const Hero = () => {
               <FaLinkedin size={20} />
             </a>
             <a
-              href="mailto:shivani.sharma9155@gmail.com"
+              href="mailto:sharma.shivani9155@gmail.com"
               className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary"
             >
               <FaEnvelope size={20} />
